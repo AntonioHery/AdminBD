@@ -35,7 +35,7 @@ const LoginPage = () => {
     router.push("/user");
   };
 
-  const { mutate: login } = useLoginClient(redirect);
+  const { mutate: login, isPending } = useLoginClient(redirect);
 
   const handleSubmit = (values: IFormInput) => {
     const { email, password } = values;
@@ -72,7 +72,7 @@ const LoginPage = () => {
           label="Password"
           {...form.getInputProps("password")}
         />
-        <Button type="submit" >Se connecter</Button>
+        <Button type="submit"  disabled={isPending} >Se connecter</Button>
         <Text size="sm" className="text-center">
           Vous n&apos;avez pas de compte ?
           <Text

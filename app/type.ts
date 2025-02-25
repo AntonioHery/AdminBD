@@ -4,7 +4,6 @@ export interface IUserLogin {
  }
 
   export interface IClient extends IUserLogin {
-    numCompte: number;
     nomClient: string;
     solde: number;
    
