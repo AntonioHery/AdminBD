@@ -26,7 +26,7 @@ class APIClient<T> {
   //   return axiosInstance.post<T>(this.endpoint, data).then((res) => res.data);
   // };
   post = (data: Partial<T> | FormData) => {
-    const config = data instanceof FormData ? { headers: { "Content-Type": "multipart/form-data" } } : undefined;
+    const config = data instanceof FormData ? { headers: { "Content-Type": "multipart/form-data" } } : { "Content-Type": "application/json" };
     return axiosInstance.post<T>(this.endpoint, data, config)
       .then((res) => res.data)
       .catch((error) => {

@@ -1,9 +1,11 @@
 export interface IUserLogin {
-    email: string;
+    numCompte: number;
     password: string;
  }
 
-  export interface IClient extends IUserLogin {
+  export interface IClient {
+    email: string;
+    password: string;
     nomClient: string;
     solde: number;
    

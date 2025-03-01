@@ -1,10 +1,9 @@
 "use client";
 
 import {
-  CustomPasswordInput,
-  CustomTextInput,
+  CustomPasswordInput
 } from "@/app/components/customInput";
-import { Button, Text } from "@mantine/core";
+import { Button, NumberInput, Text } from "@mantine/core";
 import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/navigation";
@@ -12,7 +11,7 @@ import { useForm } from "@mantine/form";
 import useLoginClient from "@/app/hooks/useLogin";
 
 interface IFormInput {
-  email: string;
+  numCompte: number;
   password: string;
 }
 
@@ -21,12 +20,12 @@ const LoginPage = () => {
   const form = useForm<IFormInput>({
     mode: "uncontrolled",
     initialValues: {
-      email: "",
+      numCompte: 0,
       password: "",
     },
 
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "email invalide"),
+      numCompte: (value) => (value >= 0 ? null : "Solde invalide"),
       password: (value) => (value.length >= 8 ? null : "Mot de passe invalide"),
     },
   });
@@ -38,12 +37,15 @@ const LoginPage = () => {
   const { mutate: login, isPending } = useLoginClient(redirect);
 
   const handleSubmit = (values: IFormInput) => {
-    const { email, password } = values;
+    console.log("Données soumises connexion :", values);
+    
+
+    const { numCompte, password } = values;
     login(
-      { email, password },
+      { numCompte, password },
       {
         onSuccess() {
-          console.log("Connexion réussie");
+          alert("Connexion réussie");
         },
         onSettled() {},
         onError() {
@@ -62,11 +64,11 @@ const LoginPage = () => {
         className="flex flex-col space-y-4 w-1/3 mx-auto mt-20 bg-gray-200 p-4 rounded-lg"
         onSubmit={form.onSubmit((values) => handleSubmit(values))}
       >
-        <CustomTextInput
-          placeholder="Email"
-          label="Email"
-          {...form.getInputProps("email")}
-        />
+        <NumberInput
+                  label="Numero de compte"
+                  placeholder="Numero de compte"
+                  {...form.getInputProps("numCompte")}
+                />
         <CustomPasswordInput
           placeholder="Password"
           label="Password"

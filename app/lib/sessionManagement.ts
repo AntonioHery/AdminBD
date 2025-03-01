@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 
-export async function loginCookie(data: string) {
+export async function setCookie(data: string) {
   const expires = new Date(Date.now() + 60 * 60 * 1000);
 
  (await cookies()).set("session", data, {
