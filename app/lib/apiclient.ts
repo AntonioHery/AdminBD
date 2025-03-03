@@ -6,6 +6,21 @@ const axiosInstance = axios.create({
   timeout: 20000,
 });
 
+
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+      console.log("Token envoyé dans la requête :", token);
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 class APIClient<T> {
   endpoint: string;
 

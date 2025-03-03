@@ -15,9 +15,13 @@ export interface IUserLogin {
     adminId: number;
    
   }
-  export interface ILoginToken {
-    access_token: string;
+  
+  export interface IRetrait {
+    numRetrait: number;
+    numCheque: string;
+    montant: number;
+    client?: Partial<IClient>;
   }
-
+  
 
     
