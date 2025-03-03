@@ -34,17 +34,17 @@ const LoginPage = () => {
     router.push("/user");
   };
 
-  const { mutate: login, isPending } = useLoginClient(redirect);
+  const { mutate: login, isPending,data } = useLoginClient(redirect);
 
   const handleSubmit = (values: IFormInput) => {
     console.log("Données soumises connexion :", values);
-    
+    console.log("Données :", data);
 
     const { numCompte, password } = values;
     login(
       { numCompte, password },
       {
-        onSuccess() {
+        onSuccess() { 
           alert("Connexion réussie");
         },
         onSettled() {},

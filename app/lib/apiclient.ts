@@ -25,15 +25,18 @@ class APIClient<T> {
    
   //   return axiosInstance.post<T>(this.endpoint, data).then((res) => res.data);
   // };
-  post = (data: Partial<T> | FormData) => {
-    const config = data instanceof FormData ? { headers: { "Content-Type": "multipart/form-data" } } : { "Content-Type": "application/json" };
-    return axiosInstance.post<T>(this.endpoint, data, config)
-      .then((res) => res.data)
-      .catch((error) => {
-        console.log("Erreur lors de la requête POST :", error.response.data);
-        throw error; // Propager l'erreur pour qu'elle soit gérée dans le hook
-      });
-  };
+      post =(data: Partial<T> | FormData) => {
+        const config = data instanceof FormData ? { headers: { "Content-Type": "multipart/form-data" } } : { "Content-Type": "application/json" };
+        return axiosInstance.post<T>(this.endpoint, data, config)
+          .then((res) =>{
+            console.log("Réponse du serveur :", res.data); // 
+                return res.data;
+          })
+          .catch((error) => {
+            console.log("Erreur lors de la requête POST :", error.response.data);
+            throw error; 
+          });
+      };
   delete = () => {
     return axiosInstance.delete<T>(`${this.endpoint}`).then((res) => res.data);
   };

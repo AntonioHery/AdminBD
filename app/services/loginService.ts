@@ -1,7 +1,7 @@
 
 import APIClient from '../lib/apiclient'
 import {  LOGIN_CLIENT_URL } from '../constants/api-url'
-import { IUserLogin } from '../type'
+import {  IUserLogin } from '../type'
 
  export const apiLoginClientInstance = new APIClient<IUserLogin>(LOGIN_CLIENT_URL)
 
