@@ -4,6 +4,8 @@ export interface IUserLogin {
     access_token?:string
  }
 
+
+
   export interface IClient {
     email: string;
     password: string;
@@ -11,8 +13,10 @@ export interface IUserLogin {
     solde: number;
    
   }
-  export interface IAdmin extends IUserLogin {
-    adminId: number;
+  export interface IAdminLogin {
+     email:string,
+     password: string
+     access_token?:string
    
   }
   
