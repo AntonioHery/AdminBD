@@ -1,77 +1,38 @@
+
+
+import useGetAllAudit from '@/app/hooks/auditRetrait/useGetAllAudit'
 import React from 'react'
 
 const CustomTable = () => {
+
+  const {data:audits}=useGetAllAudit()
+
+  const rows= audits?.map((audit)=>(
+    <tr key={audit.id}>
+        <td>{audit.nomClient}</td>
+        <td>{audit.numCompte}</td>
+        <td>{audit.typeAction}</td>
+        <td>{audit.montantAncien}</td>
+        <td>{audit.montantNouveau}</td>
+      </tr>
+  ))
   return (
     
   <table className='table' >
     {/* head */}
     <thead>
       <tr>
-        <th></th>
-        <th>Nom et Prenoms</th>
+        
+        <th>Nom du client</th>
         <th>Numero de compte</th>
         <th>Type d&apos;action</th>
+        <th>Montant Ancien</th>
+        <th>Montant Nouveau</th>
        
       </tr>
     </thead>
     <tbody>
-      {/* row 1 */}
-      <tr>
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
-      {/* row 2 */}
-      <tr>
-        <th>2</th>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-      </tr>
-      {/* row 3 */}
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
+      {rows}
     </tbody>
   </table>
 

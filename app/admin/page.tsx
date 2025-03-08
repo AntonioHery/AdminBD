@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import CustomTable from "./components/CustomTable";
 import AfficheBloc from "./components/AfficheBloc";

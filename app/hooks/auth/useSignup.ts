@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query"
-import { apiSignupClientInstance } from "../services/signupService"
+import { apiSignupClientInstance } from "@/app/services/signupService"
 
 const useSignup = (onSuccessCallback:()=>void) => {
     return useMutation({
