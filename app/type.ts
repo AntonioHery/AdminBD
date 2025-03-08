@@ -17,7 +17,7 @@ export interface IUserLogin {
   }
   
   export interface IRetrait {
-    //numRetrait: number;
+    numRetrait?: number;
     numCheque: string;
     montant: number;
     client?: Partial<IClient>;

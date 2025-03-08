@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 //import { IToken } from "../type";
 import FormRetrait from "./formRetrait";
 import { IToken } from "../type";
+import TableRetrait from "./tableRetrait";
 
 const UserPage = () => {
   const token = localStorage.getItem("access_token");
@@ -19,6 +20,7 @@ const UserPage = () => {
       
       <h1> Bienvenue sur votre espace client {nomClient} {numCompte}</h1>
        <FormRetrait numCompte={numCompte}/> 
+       <TableRetrait numCompte={numCompte}/>
     </div>
   );
 };

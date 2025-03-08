@@ -30,7 +30,9 @@ class APIClient<T> {
   }
 
   getAll = () => {
-    return axiosInstance.get<T[]>(this.endpoint).then((res) => res.data);
+    const token = localStorage.getItem("access_token");
+    const config={headers:{Authorization: `Bearer ${token}`}}
+    return axiosInstance.get<T[]>(this.endpoint, config).then((res) => res.data);
   };
   findOne = () => {
     return axiosInstance
