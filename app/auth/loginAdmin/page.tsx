@@ -4,8 +4,7 @@ import {
   CustomPasswordInput,
   CustomTextInput
 } from "@/app/components/customInput";
-import { Button, Text } from "@mantine/core";
-import Link from "next/link";
+
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "@mantine/form";
