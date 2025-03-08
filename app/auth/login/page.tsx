@@ -8,7 +8,7 @@ import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "@mantine/form";
-import useLoginClient from "@/app/hooks/useLogin";
+import useLoginClient from "@/app/hooks/auth/useLogin";
 
 interface IFormInput {
   numCompte: number;
@@ -44,7 +44,7 @@ const LoginPage = () => {
     login(
       { numCompte, password },
       {
-        onSuccess() { 
+        onSuccess() {     
           alert("Connexion réussie");
         },
         onSettled() {},

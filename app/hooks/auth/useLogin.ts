@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query"
-import {apiLoginClientInstance} from "../services/loginService"
+import {apiLoginClientInstance} from "../../services/loginService"
 
 const useLoginClient = (onSuccessCallback: () => void) => {
     return useMutation({

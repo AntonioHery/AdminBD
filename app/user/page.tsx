@@ -1,21 +1,25 @@
-import React from "react";
-import CustomTable from "../admin/components/CustomTable";
-import { NumberInput, Button, Title } from "@mantine/core";
+"use client"
+
+import jwt from "jsonwebtoken";
+//import { IToken } from "../type";
+import FormRetrait from "./formRetrait";
+import { IToken } from "../type";
 
 const UserPage = () => {
+  const token = localStorage.getItem("access_token");
+
+  const decodedToken = jwt.decode(token!) as IToken// decoder le token
+  console.log("Token décodé :", decodedToken);
+  const numCompteString= JSON.stringify(decodedToken.numCompte)
+  const numCompte= parseInt(numCompteString)// converit en type nombre
+  const nomClient= JSON.stringify(decodedToken.nomClient)
+
   return (
-    <>
-      <div className="mb-8">
-      <Title order={3}>Mes retraits</Title>
-      </div>
-      <div className="flex gap-8 ">
-        <form className="flex flex-col justify-between space-y-4 bg-gray-100 px-8 py-6 w-3/5 h-48">
-          <NumberInput label="Montant " />
-          <Button>Effectuer Retrait</Button>
-        </form>
-        <CustomTable />
-      </div>
-    </>
+    <div>
+      
+      <h1> Bienvenue sur votre espace client {nomClient} {numCompte}</h1>
+       <FormRetrait numCompte={numCompte}/> 
+    </div>
   );
 };
 
