@@ -11,3 +11,7 @@ export const GET_ALL_AUDIT_RETRAIT_URL=`${BASE_URL}/audit-retraits/all`
 export function GET_RETRAIT_BY_NUMCOMPTE(numCompte: number){
     return`${RETRAIT_URL}/client/${numCompte}`
 }
+
+export function RETRAIT_BY_ID(numRetrait:number){
+    return `${RETRAIT_URL}/id/${numRetrait}`
+}

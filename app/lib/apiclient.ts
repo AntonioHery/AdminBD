@@ -34,9 +34,11 @@ class APIClient<T> {
     const config={headers:{Authorization: `Bearer ${token}`}}
     return axiosInstance.get<T[]>(this.endpoint, config).then((res) => res.data);
   };
-  findOne = () => {
+  getOne = () => {
+    const token = localStorage.getItem("access_token");
+    const config={headers:{Authorization: `Bearer ${token}`}}
     return axiosInstance
-      .get<T>(`${this.endpoint}`)
+      .get<T>(this.endpoint, config)
       .then((res) => res.data);
   };
  
@@ -66,12 +68,16 @@ class APIClient<T> {
           });
       };
   delete = () => {
-    return axiosInstance.delete<T>(`${this.endpoint}`).then((res) => res.data);
+    const token = localStorage.getItem("access_token");
+    const config={headers:{Authorization: `Bearer ${token}`}}
+    return axiosInstance.delete<T>(`${this.endpoint}`,config).then((res) => res.data);
   };
 
   patch = (data: Partial<T>) => {
+    const token = localStorage.getItem("access_token");
+    const config={headers:{Authorization: `Bearer ${token}`}}
     return axiosInstance
-      .patch<T>(`${this.endpoint}`, data)
+      .patch<T>(`${this.endpoint}`, data,config)
       .then((res) => res.data);
   };
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import useGetRetraitByNumcompte from '../hooks/retrait/useGetRetraitByNumcompte'
-import { Table, Text } from '@mantine/core';
+import { Table, Text,Flex , Button} from '@mantine/core';
+import Link from 'next/link';
 
 interface IProps {
     numCompte: number;
@@ -18,6 +19,14 @@ const TableRetrait = ({numCompte}:IProps) => {
         <Table.Tr key={retrait.numRetrait}>
           <Table.Td>{retrait.numCheque}</Table.Td>
           <Table.Td>{retrait.montant}</Table.Td>
+          <Table.Th>
+            <Flex>
+              <Button>
+                <Link href={`/user/edit/${retrait.numRetrait}`}> Modifier</Link>
+              </Button>
+              <Button>Supprimer</Button>
+            </Flex>
+          </Table.Th>
         </Table.Tr>
       ));
 
@@ -28,6 +37,7 @@ const TableRetrait = ({numCompte}:IProps) => {
         <Table.Tr>
           <Table.Th>Numero de cheque</Table.Th>
           <Table.Th>Montant</Table.Th>
+          <Table.Th></Table.Th>
         </Table.Tr>
       </Table.Thead>
       <Table.Tbody>{rows}</Table.Tbody>

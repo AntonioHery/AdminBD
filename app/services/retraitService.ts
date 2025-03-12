@@ -1,4 +1,4 @@
-import { GET_RETRAIT_BY_NUMCOMPTE, RETRAIT_URL } from "../constants/api-url";
+import { GET_RETRAIT_BY_NUMCOMPTE, RETRAIT_BY_ID, RETRAIT_URL } from "../constants/api-url";
 import APIClient from "../lib/apiclient";
 import { IRetrait } from "../type";
 
@@ -11,6 +11,15 @@ import { IRetrait } from "../type";
     }
  }
 
+ class RetraitServiceById{
+   retraitById=<T>(numRetrait:number)=>{
+      const url = RETRAIT_BY_ID(numRetrait)
+      return new APIClient<T>(url)
+ }
+}
+
  const retraitByNumcompteService= new RetraitService()
 
-export { apiRetraitInstance, retraitByNumcompteService}
+ const retraitByIdService= new RetraitServiceById()
+
+export { apiRetraitInstance, retraitByNumcompteService, retraitByIdService}
