@@ -25,6 +25,8 @@ const EditPage = () => {
    }
   )
 
+  
+
   useEffect(() => {
     if (retrait) {
       setFormValues({
@@ -57,8 +59,8 @@ const EditPage = () => {
       <form onSubmit={handleSubmit}  className="flex flex-col justify-between space-y-4 bg-gray-100 px-8 py-6 w-3/5 h-48">
         <CustomTextInput label="Numéro de chèque" value={formValues.numCheque} onChange={(value) => setFormValues({ ...formValues, montant: Number(value) })}  />
         <div className="flex flex-col gap-4">
-          <NumberInput label="Montant" value={formValues.montant} onChange={(value) => setFormValues({ ...formValues, montant: Number(value) })} />
-          <Button type="submit" >Modifier Retrait</Button>
+        <NumberInput label="Montant" value={formValues.montant} onChange={(value) => setFormValues({ ...formValues, montant: Number(value) })} />
+        <Button type="submit" >Modifier Retrait</Button>
         </div>
       </form>
       

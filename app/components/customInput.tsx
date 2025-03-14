@@ -4,7 +4,7 @@ export const CustomTextInput: React.FC<TextInputProps> = ({ ...props }) => {
   return (
     <TextInput
       classNames={{
-        input: " focus:border-teal-500 focus:border-2 outline-none",
+        input: " focus:border-blue-500 focus:border-2 outline-none",
         root: "w-full",
       }}
       {...props}

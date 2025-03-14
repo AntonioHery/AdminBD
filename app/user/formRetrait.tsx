@@ -18,8 +18,7 @@ interface IProps {
 }
 
 const FormRetrait = ({ numCompte }: IProps) => {
-
-  const router= useRouter()
+  const router = useRouter();
 
   const form = useForm<IFormInput>({
     mode: "uncontrolled",
@@ -34,8 +33,7 @@ const FormRetrait = ({ numCompte }: IProps) => {
 
   const callback = () => {
     console.log("ok");
-    router.refresh()
-    
+    router.refresh();
   };
   const { mutate: postRetrait } = usePostRetrait(callback);
 
@@ -48,36 +46,39 @@ const FormRetrait = ({ numCompte }: IProps) => {
       return;
     }
 
-    postRetrait(
-      { montant, numCheque },
-     
-    );
+    postRetrait({ montant, numCheque });
   };
 
   return (
-    <>
+    <div className="flex flex-col w-1/2">
       <div className="mb-8">
         <Title order={3}>Mes retraits</Title>
       </div>
-      <div className="flex gap-8 ">
-        <form
-          onSubmit={form.onSubmit((values) => {
-            handleSubmit(values);
-          })}
-          className="flex flex-col justify-between space-y-4 bg-gray-100 px-8 py-6 w-3/5 h-48"
-        >
-          <CustomTextInput
-            label="Numéro de chèque"
-            {...form.getInputProps("numCheque")}
+
+      <form
+        onSubmit={form.onSubmit((values) => {
+          handleSubmit(values);
+        })}
+        className="flex flex-col space-y-4 bg-gray-100 px-8 py-6 w-3/5 rounded-xl"
+      >
+        <CustomTextInput
+          label="Numéro de chèque"
+          {...form.getInputProps("numCheque")}
+        />
+        <div className="flex flex-col gap-4">
+          <NumberInput
+            classNames={{
+              input: " focus:border-blue-500 focus:border-2 outline-none",
+              root: "w-full",
+            }}
+            label="Montant "
+            {...form.getInputProps("montant")}
           />
-          <div className="flex flex-col gap-4">
-            <NumberInput label="Montant " {...form.getInputProps("montant")} />
-            <Button type="submit">Effectuer Retrait</Button>
-          </div>
-        </form>
-        {/* <CustomTable /> */}
-      </div>
-    </>
+        </div>
+        <Button type="submit">Effectuer Retrait</Button>
+      </form>
+      {/* <CustomTable /> */}
+    </div>
   );
 };
 

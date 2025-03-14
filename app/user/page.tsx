@@ -22,7 +22,7 @@ const UserPage = () => {
         {" "}
         Bienvenue sur votre espace client {nomClient} {numCompte}
       </h1>
-      <Flex gap="xl" direction="column">
+      <Flex gap="xl" direction="row">
         <FormRetrait numCompte={numCompte} />
         <TableRetrait numCompte={numCompte} />
       </Flex>
