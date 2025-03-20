@@ -4,6 +4,7 @@ import "./globals.css";
 import "@mantine/core/styles.css";
 import { MantineProvider } from "@mantine/core";
 import QueryClientProvider from "./QueryClientProvider";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
       >
         <QueryClientProvider>
           <MantineProvider>{children}</MantineProvider>
+          <ToastContainer />
         </QueryClientProvider>
       </body>
     </html>

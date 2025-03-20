@@ -1,15 +1,38 @@
-import { Text } from '@mantine/core'
-import React from 'react'
+import useGetStats from "@/app/hooks/auditRetrait/useGetStats";
+//import { ScrollArea } from "@mantine/core";
+//import { Text } from "@mantine/core";
+import React from "react";
 
 const AfficheBloc = () => {
-  return (
-    <div>
-        <div className='flex'>Insertions effectues:&nbsp;<Text fw={500} fs="italic"> 19</Text> </div>
-        <div className='flex'>Modifications effectues:&nbsp;<Text fw={500} fs="italic"> 19</Text></div>
-        <div className='flex'>Suppressions effectues:&nbsp;<Text fw={500} fs="italic"> 19</Text></div>
-        
-    </div>
-  )
-}
+  const { data: stats, error, isLoading } = useGetStats();
 
-export default AfficheBloc
+  // Extraction des valeurs par type d'action
+  if (isLoading) return <p>Chargement...</p>;
+  if (error) return <p>Erreur : erreur</p>;
+
+  const getActionMessage = (typeAction: string, nb: number) => {
+    switch (typeAction) {
+      case "INSERT":
+        return `Ajout(s) effectué(s): ${nb}`;
+      case "UPDATE":
+        return `Modification(s) effectuée(s): ${nb}`;
+      case "DELETE":
+        return `Suppression(s) effectuée:(s) ${nb}`;
+      default:
+        return `Action inconnue (${typeAction}) exécutée ${nb} fois`;
+    }
+  };
+
+  return (
+    <div className="flex flex-row justify-around mb-5">
+      {stats && stats.map((stat: { id: number; typeAction: string; nb: number }) => (
+        <div key={stat.id} className="bg-red-100 p-2 rounded-lg">
+          {getActionMessage(stat.typeAction, stat.nb)}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default AfficheBloc;
+ 

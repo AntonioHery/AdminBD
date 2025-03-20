@@ -6,6 +6,7 @@ import React from "react";
 import usePostRetrait from "../hooks/retrait/usePostRetrait";
 import { CustomTextInput } from "../components/customInput";
 import { useRouter } from "next/navigation";
+import { successToast } from "../lib/toast";
 //import { IClient } from '../type';
 
 interface IFormInput {
@@ -46,7 +47,15 @@ const FormRetrait = ({ numCompte }: IProps) => {
       return;
     }
 
-    postRetrait({ montant, numCheque });
+    postRetrait({ montant, numCheque },
+    {
+      onSuccess() {
+        successToast("Retrait effectué avec succès");
+        router.refresh();
+      },
+     
+    }
+    );
   };
 
   return (

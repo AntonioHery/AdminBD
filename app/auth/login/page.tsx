@@ -9,6 +9,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "@mantine/form";
 import useLoginClient from "@/app/hooks/auth/useLogin";
+import { successToast } from "@/app/lib/toast";
 
 interface IFormInput {
   numCompte: number;
@@ -45,7 +46,8 @@ const LoginPage = () => {
       { numCompte, password },
       {
         onSuccess() {     
-          alert("Connexion réussie");
+          successToast("Connexion réussie");
+          
         },
         onSettled() {},
         onError() {
@@ -81,7 +83,7 @@ const LoginPage = () => {
             fs="italic"
             td="underline"
             ml={2}
-            c="teal.4"
+            c="blue.4"
             component={Link}
             className="underline-offset-1"
             href={"/auth/signup"}
@@ -89,6 +91,7 @@ const LoginPage = () => {
             S&apos;inscrire
           </Text>
         </Text>
+        <Text  c="blue.4" td="underline" className="underline-offset-1" component={Link} href={"/auth/loginAdmin"} fs="italic">Vers Admin</Text>
       </form>
     </div>
   );

@@ -2,9 +2,11 @@
 import { CustomTextInput } from "@/app/components/customInput";
 import useGetRetraitById from "@/app/hooks/retrait/useGetRetraitById";
 import usePatchRetrait from "@/app/hooks/retrait/usePatchRetrait";
+import { infoToast } from "@/app/lib/toast";
 import { Button, NumberInput, Text } from "@mantine/core";
 //import { useForm } from "@mantine/form";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+
 import React, { useEffect, useState } from "react";
 
 interface IFormInput {
@@ -14,6 +16,7 @@ interface IFormInput {
 const EditPage = () => {
 
   const params= useParams()
+  const router= useRouter()
   const id:number= Number(params.id)
 
   const{data:retrait}=useGetRetraitById(id)
@@ -49,7 +52,16 @@ const EditPage = () => {
     
 
     const{montant, numCheque}=formValues
-    updateRetrait({montant, numCheque})
+    updateRetrait({montant, numCheque},
+      {
+        onSuccess() {
+          infoToast("Retrait modifié avec succès");
+          console.log("jajajaja")
+          router.push("/user");
+        },
+      }
+    )
+    
   }
 
   return (

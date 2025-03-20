@@ -3,6 +3,7 @@ import useGetRetraitByNumcompte from '../hooks/retrait/useGetRetraitByNumcompte'
 import { Table, Text,Flex , Button} from '@mantine/core';
 import Link from 'next/link';
 import useDeleteRetrait from '../hooks/retrait/useDeleteRetrait';
+import { infoToast } from '../lib/toast';
 
 interface IProps {
     numCompte: number;
@@ -10,7 +11,7 @@ interface IProps {
 
 const TableRetrait = ({numCompte}:IProps) => {
 
-    const{data:retraits}=useGetRetraitByNumcompte(numCompte)
+    const{data:retraits, refetch}=useGetRetraitByNumcompte(numCompte)
 
     const callback = () => {
         console.log("Modification ok");
@@ -24,8 +25,15 @@ const TableRetrait = ({numCompte}:IProps) => {
 
     const handleDelete = (numRetrait: number ) => {
      if(numRetrait){
-      if (confirm("Voulez-vous vraiment supprimer ce retrait ?")) {
-        deleteRetrait({numRetrait});
+       {
+        deleteRetrait({numRetrait},
+        {
+          onSuccess() {
+           infoToast("Retrait supprimé avec succès");
+           refetch()
+          },
+        }
+        );
       }
      }
     };
@@ -35,7 +43,7 @@ const TableRetrait = ({numCompte}:IProps) => {
     }
 
 
-    const rows = retraits?.map((retrait) => (
+    const rows = retraits.map((retrait) => (
         <Table.Tr key={retrait.numRetrait}>
           <Table.Td>{retrait.numCheque}</Table.Td>
           <Table.Td>{retrait.montant}</Table.Td>

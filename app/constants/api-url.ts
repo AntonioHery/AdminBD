@@ -6,6 +6,7 @@ export const LOGIN_CLIENT_URL =`${AUTH_LOGIN_URL}/client/login`;
 export const REGISTER_CLIENT_URL =`${BASE_URL}/clients/sign-in`;
 export const RETRAIT_URL =`${BASE_URL}/retraits`;
 export const GET_ALL_AUDIT_RETRAIT_URL=`${BASE_URL}/audit-retraits/all`
+export const GET_ALL_AUDIT_RETRAIT_STATS_URL=`${BASE_URL}/audit-retraits/stats`
 
 
 export function GET_RETRAIT_BY_NUMCOMPTE(numCompte: number){

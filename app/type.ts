@@ -48,5 +48,9 @@ export interface IUserLogin {
     utilisateur?: IClient;
   }
   
-
+export interface IStats{
+  typeAction:string,
+  nb: number
+  id:number
+}
     
