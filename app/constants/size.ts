@@ -1,0 +1,1 @@
+export const bigSize = "56px";

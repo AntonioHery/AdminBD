@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-white text-black px-6 py-8`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-[#e8e8e8] text-black px-6 py-8`}
       >
         <QueryClientProvider>
           <MantineProvider>{children}</MantineProvider>

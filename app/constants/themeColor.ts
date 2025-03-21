@@ -1,0 +1,1 @@
+export const primaryColor = "#8931b2"//violet
