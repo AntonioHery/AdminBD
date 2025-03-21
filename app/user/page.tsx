@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import FormRetrait from "./formRetrait";
 import { IToken } from "../type";
 import TableRetrait from "./tableRetrait";
-import { Button, Flex } from "@mantine/core";
+import { Button, Flex, Title } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -40,10 +40,10 @@ const UserPage = () => {
 
   return (
     <div>
-      <div className="flex justify-between mb-5">
-        <h1>
-          Bienvenue sur votre espace client {nomClient}
-        </h1>
+      <div className="flex justify-between mb-12">
+        <Title order={3}>
+          Bienvenue sur votre espace client {nomClient.trim().replace(/^"|"$/g, "")}
+        </Title>
         <Button color="rgba(33, 7, 7, 1)" onClick={handleLogout}>Deconnexion</Button>
       </div>
       <Flex gap="xl" direction="row">

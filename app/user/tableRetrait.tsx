@@ -4,6 +4,8 @@ import { Table, Text,Flex , Button} from '@mantine/core';
 import Link from 'next/link';
 import useDeleteRetrait from '../hooks/retrait/useDeleteRetrait';
 import { infoToast } from '../lib/toast';
+import { Edit, edit } from '../constants/icon';
+import { primaryColor } from '../constants/themeColor';
 
 interface IProps {
     numCompte: number;
@@ -49,10 +51,11 @@ const TableRetrait = ({numCompte}:IProps) => {
           <Table.Td>{retrait.montant}</Table.Td>
           <Table.Th>
             <Flex gap="md">
-              <Button>
+              
+              <Button variant='light' color={primaryColor} size='xs'>
                 <Link href={`/user/edit/${retrait.numRetrait}`}> Modifier</Link>
               </Button>
-              <Button onClick={()=>handleDelete(retrait.numRetrait)}>Supprimer</Button>
+              <Button color='red' size='xs' onClick={()=>handleDelete(retrait.numRetrait)}>Supprimer</Button>
             </Flex>
           </Table.Th>
         </Table.Tr>
@@ -60,7 +63,7 @@ const TableRetrait = ({numCompte}:IProps) => {
 
     
   return (
-   <div className='w-2/3'>
+   <div className='w-2/3 bg-white px-10 py-12 rounded-xl'>
      <Table>
       <Table.Thead>
         <Table.Tr>

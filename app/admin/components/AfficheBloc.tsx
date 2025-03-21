@@ -17,7 +17,7 @@ const AfficheBloc = () => {
       case "UPDATE":
         return `Modification(s) effectuée(s): ${nb}`;
       case "DELETE":
-        return `Suppression(s) effectuée:(s) ${nb}`;
+        return `Suppression(s) effectuée(s):  ${nb}`;
       default:
         return `Action inconnue (${typeAction}) exécutée ${nb} fois`;
     }
@@ -26,7 +26,7 @@ const AfficheBloc = () => {
   return (
     <div className="flex flex-row justify-around mb-5">
       {stats && stats.map((stat: { id: number; typeAction: string; nb: number }) => (
-        <div key={stat.id} className="bg-red-100 p-2 rounded-lg">
+        <div key={stat.id} className="bg-[#cda9de] p-2 rounded-lg px-8 py-4">
           {getActionMessage(stat.typeAction, stat.nb)}
         </div>
       ))}

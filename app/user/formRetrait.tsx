@@ -1,12 +1,13 @@
 "use client";
 
-import { Title, NumberInput, Button } from "@mantine/core";
+import { Title, Button } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import React from "react";
 import usePostRetrait from "../hooks/retrait/usePostRetrait";
 import { CustomTextInput } from "../components/customInput";
 import { useRouter } from "next/navigation";
 import { successToast } from "../lib/toast";
+import { primaryColor } from "../constants/themeColor";
 //import { IClient } from '../type';
 
 interface IFormInput {
@@ -39,52 +40,53 @@ const FormRetrait = ({ numCompte }: IProps) => {
   const { mutate: postRetrait } = usePostRetrait(callback);
 
   const handleSubmit = (values: IFormInput) => {
-    console.log("Données soumises retrait :", values);
-    const { montant, numCheque } = values;
+
+    const formattedValues = {
+      ...values,montant: Number(values.montant), // Conversion en number
+    };
+    console.log("Données soumises retrait :", formattedValues);
+    const { montant, numCheque } = formattedValues;
 
     if (!numCompte) {
       console.log("Erreur : numCompte est undefined !");
       return;
     }
 
-    postRetrait({ montant, numCheque },
-    {
-      onSuccess() {
-        successToast("Retrait effectué avec succès");
-        router.refresh();
-      },
-     
-    }
+    postRetrait(
+      { montant, numCheque },
+      {
+        onSuccess() {
+          successToast("Retrait effectué avec succès");
+          router.refresh();
+        },
+      }
     );
   };
 
   return (
     <div className="flex flex-col w-1/2">
-      <div className="mb-8">
-        <Title order={3}>Mes retraits</Title>
-      </div>
-
       <form
         onSubmit={form.onSubmit((values) => {
           handleSubmit(values);
         })}
-        className="flex flex-col space-y-4 bg-gray-100 px-8 py-6 w-3/5 rounded-xl"
+        className="flex flex-col space-y-4 bg-white px-8 py-10 w-3/5 rounded-xl"
       >
+        <Title order={3}>Mes retraits</Title>
+
         <CustomTextInput
           label="Numéro de chèque"
           {...form.getInputProps("numCheque")}
         />
-        <div className="flex flex-col gap-4">
-          <NumberInput
-            classNames={{
-              input: " focus:border-blue-500 focus:border-2 outline-none",
-              root: "w-full",
-            }}
-            label="Montant "
-            {...form.getInputProps("montant")}
-          />
-        </div>
-        <Button type="submit">Effectuer Retrait</Button>
+
+        <CustomTextInput
+          type="number"
+          label="Montant "
+          placeholder="0000"
+          {...form.getInputProps("montant")}
+        />
+        <Button type="submit" color={primaryColor}>
+          Effectuer Retrait
+        </Button>
       </form>
       {/* <CustomTable /> */}
     </div>
